@@ -36,7 +36,7 @@ for hostname in hosts :
         client.connect(hostname, username=s3cr3t[0], password=s3cr3t[1])
         stdin, stdout, stderr = client.exec_command("who")
         # luv python syntax
-        who = list(set([e.split(" ")[0] for e in stdout.read().split("\n")[:-1]]))
+        who = list(set([e.lstrip().split(" ")[0] for e in stdout.read().split("\n")[:-1]]))
         for user in who:
             print "\t|\t", user, fill(tab-len(user)), "\033[0m  |"
 
