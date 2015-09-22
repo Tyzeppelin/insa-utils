@@ -17,6 +17,12 @@ Ca script ne donne que la disponibilité des pc sous linux (et du coup accessibl
 
 Une petite commande sed pour enlever les trailing spaces. Pour la beauté du code.
 
+### whoishere.py
+
+Un petit script qui, en plus de tester la dispo des pc du depart,
+permet de savoir qui est connecté sur quel pc!
+
+(N.d.d.: Un peu plus lent que whatsup.py vu que l’on soit se connecter en ssh sur la machine.)
 
 Soon :tm:
 --------
