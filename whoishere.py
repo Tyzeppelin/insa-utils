@@ -4,14 +4,7 @@ import subprocess
 import paramiko
 
 def fill (n) :
-    if n < 0:
-        return ""
-    i = 0
-    res = ""
-    while i < n:
-        res += " "
-        i += 1
-    return res
+    return " "*n
 
 tab = 27
 
@@ -23,7 +16,7 @@ down = 0
 client = paramiko.SSHClient()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-print "\t+------------------------------+-------+"
+print("\t+------------------------------+-------+")
 
 for hostname in hosts :
     ping = subprocess.Popen("ping -c 1 -w 1 " + hostname, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -31,16 +24,16 @@ for hostname in hosts :
     response = ping.returncode
     if response == 0:
         up += 1
-        print "\t|\033[92m", hostname, fill(tab-len(hostname)), "\033[0m|is up  |"
+        print("\t|\033[92m", hostname, fill(tab-len(hostname)), "\033[0m|is up  |")
 
         client.connect(hostname, username=s3cr3t[0], password=s3cr3t[1])
         stdin, stdout, stderr = client.exec_command("who")
         # luv python syntax
         who = list(set([e.lstrip().split(" ")[0] for e in stdout.read().split("\n")[:-1]]))
         for user in who:
-            print "\t|\t", user, fill(tab-len(user)), "\033[0m  |"
+            print("\t|\t", user, fill(tab-len(user)), "\033[0m  |")
 
-    	print "\t+------------------------------+-------+"
+    	print("\t+------------------------------+-------+")
     else:
         down += 1
 
